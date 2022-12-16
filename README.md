@@ -59,3 +59,77 @@ Our project’s dataset is a sample of a real-life dataset obtained from the aut
     5. Use two histograms to visualize both features’ distributions with the parameter nbins set to 20. Due to very large values in both features, the distributions should look highly right skewed, meaning that many of its values are less than the mean. As a result, the plot’s peak is on the left end of the graph.
     6. Last, we draw two box plots (again, one per feature). A box plot is a visualization for representing the spread of the data and its quantiles. Its name is because it uses a box and two lines (known as whiskers), where the ends of the box mark the first (Q1) and third quartile (Q3), and the whiskers are the lower and upper limits. These lower and upper limits are calculated by their respective formulas: `Q1 – 1.5 * (Q3-Q1)` and `Q3 + 1.5 * (Q3-Q1)`. The values falling outside these limits are categorized as outliers. At a quick glance, the box plots show the outlier data points above the upper limit and a horizontal line instead of a box—this line is the box! But we see it flat instead of squared because the distance between Q3 and Q1 (known as the interquartile range) is extremely small compared to the large outlier values. However, because Plotly graphs are interactive, you can zoom in until the line starts to resemble a box. You can find an example of some of these visualizations in the “full solution” help layer.
 8. Save the notebook.
+
+## Part 3
+
+### 3.1 Objective
+
+Train an anomaly detection model using the Isolation forest model. We also export the model and visualize its decision boundary.
+
+### 3.2 Importance
+
+- In this milestone, we will create an anomaly detection model, which we could consider the center and key component of the platform. Later, we will serve the model using a web service and generate metrics.
+- Besides training the model, we will explore the concept of anomaly detection and one of its most popular algorithms, Isolation Forest. Regarding the algorithm itself, we quickly describe it and introduce one of its most crucial hyperparameters: contamination.
+- While working with the model, we will also learn about the concept of a decision boundary and how to visualize it using the function decision_function() and Matplotlib.
+
+### 3.3 About Isolation Forest
+
+**Isolation Forest** (Fei Tony Liu, Kai Ming Ting, and Zhi-Hua Zhou, 2008) is an unsupervised learning algorithm for identifying anomalies, or data observations that follow a different pattern than in normal instances. Unlike most anomaly detection algorithms, which work by learning the normal or common patterns and classifying the rest as anomalies, an isolation forest focuses on isolating the anomalies and not the normal cases. According to the authors, the drawback of the first approach is that these methods are optimized for profiling the normal instances and not the anomalies and their constraint to perform well in only low-dimensional data. On the other hand, isolation forests focus on the property that anomalies are usually the minority class among a dataset and that their features differ from the normal ones. As a result, and quoting the paper, “Anomalies are ‘few and different,’ which make[s] them more susceptible to isolation than normal points.”
+
+### 3.4 About Makefile
+
+By this point, we have executed the Docker run command at least three times; and that’s great because now we know how to use it. However, typing such a large and verbose command takes time, and it’s prone to errors. To streamline the process, I’d suggest using a makefile. A makefile is a building automation tool consisting of a file named makefile (without extension). This makefile consists of named rules that, upon executing them, execute a system command, like an alias. For example, we could have a rule named run whose system command is `docker run -v $(PWD):/src -p 8888:8888 {your_name}/lp-jupyter`. So instead of executing the Docker command, we could use `make run`. Shorter, right? The makefile file should look as follows:
+
+```
+run:
+    docker run -v $(PWD):/src -p 8888:8888 {your_name}/lp-jupyter
+```
+
+To use it, execute `make run` from the terminal while same in the path as the makefile.
+
+### 3.5 Workflow
+
+1. Picking up where we last left off (the liveProject/jupyter/ directory), add scikit-learn and Matplotlib to our list of requirements in requirements.txt.
+2. Build the Docker image.
+3. Start the Docker image as we did in Milestone 2, step 5, and access Jupyter. From Jupyter, create a new notebook and name it train.
+4. Our tasks in this milestone are loading the dataset, training the model, and visualizing its decision boundary. Therefore, in the notebook’s first cell, import pandas, NumPy, Matplotlib, and scikit-learn’s Isolation forest class.
+5. Load both the training and test datasets.
+6. Now, we will train the model.
+    1. To train it, create an instance of an `IsolationForest` model and use the parameter `random_state` set to `16` for reproducibility purposes. You can find the model’s documentation at `sklearn.ensemble.IsolationForest`. Assigning this parameter ensures that we will all obtain the same results. Why 16? It’s just a random number; there’s no particular reason.
+    2. Use the method `model.fit()` with the loaded training set as a parameter to train it. That’s it; we have the model. Wait, do we? Let’s take a look.
+7. **Note:** As we saw in the introduction, an isolation forest isolates the anomalous points from the non-anomalous points. In layman’s terms, we could say that it builds a frontier that separates these anomalous points from the non-anomalous points. This frontier is sometimes known as the decision boundary or decision function, and we can obtain it by using as a proxy the anomaly scores obtained with the method `model.decision_function()` and the input samples. In the next step, we will visualize it.
+8. Draw the model’s decision function.
+    1. Drawing the boundary is not a trivial problem. Hence, here’s a snippet that does it (code was modified from an official scikit-learn example). But before you copy/paste, let’s quickly go through it and discuss it.
+    ```python
+    import matplotlib.pyplot as plt
+
+    # Change the plot's size.
+    plt.rcParams['figure.figsize'] = [15, 15]
+
+    # Plot of the decision frontier
+    xx, yy = np.meshgrid(np.linspace(-2, 70, 100), np.linspace(-2, 70, 100))
+    Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    plt.title("Decision Boundary (base model)")
+    # This draw the "soft" or secondary boundaries.
+    plt.contourf(xx, yy, Z, levels=np.linspace(Z.min(), 0, 8), cmap=plt.cm.PuBu, alpha=0.5)
+    # This draw the line that separates the hard from the soft boundaries.
+    plt.contour(xx, yy, Z, levels=[0], linewidths=2, colors='darkred')
+    # This draw the hard boundary
+    plt.contourf(xx, yy, Z, levels=[0, Z.max()], colors='palevioletred')
+    plt.scatter(X_train.iloc[:, 0],
+                X_train.iloc[:, 1],
+                edgecolors='k')
+    plt.xlabel('Mean')
+    plt.ylabel('SD')
+    plt.grid(True)
+    plt.show()
+    ```
+    2. The main idea behind the visualization involves generating many points, covering the range of both features of the training set and predicting the anomaly scores of these generated points with the `decision_function()` function (note that I named my model variable `clf`; yours might have a different name). After predicting, we draw the generated points using Matplotlib’s contour plot to see the “ripples” (the different boundary levels). After drawing it, you will see a “hard” boundary in red and “soft” boundaries in different shades of blue. Make sure you also add the training set (I named mine `X_train`; yours might have a different name) to the plot using `plt.scatter()`.
+    3.  Copy/paste the snippet above to draw the decision boundary. The image that follows shows how the plot should look.
+9. Let’s take this milestone step to interpret what we see here. The plot you have on screen is the decision boundary of the isolation forest. Everything within the red region is what I call the “hard” decision boundary. It contains the inliers, or normal points. The rest are the outliers, or anomalies. Here, we can barely see the red region; it is extremely small compared to the rest of the space. Yet, it contains most of the points (around 85%) of the training dataset. However, the remaining 15% is still a lot of data, and it is probable that many of these points are data points that aren’t extremely anomalous or points that might even be false positives. So, for this case, it would be wise to increase the decision boundary’s size, thus also reducing the points that would be classified as outliers. How? By using the contamination hyperparameter. See note 1 in the Notes section below.
+10. Retrain the model using the `contamination` hyperparameter set to `0.001`. This hyperparameter controls the proportion of outliers in the dataset, so we will force the model to build its decision function with the constraint that only 0.1% of the data observations are outliers. With this hyperparameter, we will drastically reduce and control the outliers’ space.
+11. Replot the decision boundary of the new model. Notice the difference? In this new model, the hard decision boundary covers more space than the previous one, leaving us with values that could be considered extremely anomalous.
+12. Use the model’s `predict()` method to test it with the test dataset. The function returns an array with the predictions where each value is either -1 (outlier) or 1 (inlier).
+13. Once again, plot the decision boundary, but instead of drawing the training set, draw the test dataset and color code the inliers with blue and the outliers with red. You could do so by merging the test dataset with the predictions produced in step 12 and using one `plt.scatter()` to plot the data observations where the prediction label is `-1` and another where the label is `1`. To merge the data, you could use the pandas `concat()` function like this: `pd.concat([X_test, pd.Series(test_predictions)], axis=1)`, where `test_predictions` are the predictions from step 12. If everything works as planned, all the inliers are inside the red region and the outliers are in the blue one. The resulting plot should look similar to this one.
+14. Export the model to the host machine using the package joblib (it comes with scikit-learn’s installation). For details on how to do this, see the Resources section.
