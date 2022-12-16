@@ -1,0 +1,248 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Lato-Bold;\f1\fnil\fcharset0 Lato-Regular;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 Lato-Italic;\f4\froman\fcharset0 Times-Italic;\f5\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red241\green241\blue241;
+\red184\green14\blue61;\red247\green238\blue241;\red18\green141\blue221;\red49\green49\blue49;\red5\green48\blue77;
+\red255\green255\blue231;\red38\green38\blue38;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\c83922;\cssrgb\c100000\c100000\c100000;\cssrgb\c95686\c95686\c95686;
+\cssrgb\c78039\c14510\c30588;\cssrgb\c97647\c94902\c95686;\cssrgb\c392\c62745\c89412;\cssrgb\c25098\c25098\c25098;\cssrgb\c0\c25098\c37647;
+\cssrgb\c100000\c100000\c92549;\cssrgb\c20000\c20000\c20000;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl1120\sa600\partightenfactor0
+
+\f0\b\fs112 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Deploying the Model on a FastAPI Web Serivce\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\fs42 \cf2 \cb4 Objective
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use the Python framework FastAPI to develop a web service that hosts and serves the model\'92s predictions through a REST API. This service will run inside a Docker container.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Workflow
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls2\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Within the same \'93liveproject\'94 directory from Milestone 1, create a new directory and name it \'93service.\'94 Go inside it and create a new Python file named\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 main.py
+\f1\fs42 \cf2 \cb4 \strokec2 . This file is where we will write the service.\cb1 \uc0\u8232 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a new\'a0
+\f3\i requirements.txt
+\f1\i0 \'a0and define the essential needed libraries (
+\f0\b fastapi
+\f1\b0 \'a0and\'a0
+\f0\b uvicorn
+\f1\b0 ), plus those you find useful.\cb1 \uc0\u8232 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Write the web service in main.py. The web service needs two endpoints\'97one to handle the predictions and another for providing the model\'92s hyperparameters.\cb1 \uc0\u8232 \cb4 a. Before getting to the actual service, we first need to load the model we exported in Milestone 3.\cb1 \uc0\u8232 \cb4 b. For the first endpoint, create a\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 POST
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0method with address\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /prediction
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0that accepts as input an object with a field named\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 feature_vector
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0of type\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 List[float]
+\f1\fs42 \cf2 \cb4 \strokec2 . This field takes the vector we will input to the model to predict. The input object needs a second, but optional, field named\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0of type\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 bool
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \uc0\u8232 \cb4 c. The endpoint handler function needs to return an object with a field\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 is_inlier
+\f1\fs42 \cf2 \cb4 \strokec2 , which takes as value the model\'92s prediction obtained after calling model.predict(), where the argument has to be the feature vector from the request object. Additionally, if the optional value\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0is\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 true
+\f1\fs42 \cf2 \cb4 \strokec2 , add to the response object another field named\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 anomaly_score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0whose value is the predicted anomaly score. To get the anomaly score, predict using the isolation forest model\'92s\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score_samples()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0method and use as an argument the input feature vector. Both\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 predict()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score_samples()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0return a list with the predictions, but since we are predicting with only one feature vector at time, and thus producing one prediction, you could index the first element of the response array to index the prediction. To build the object to be returned by the handler function, you could create an empty dictionary , let\'92s call it\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 response
+\f1\fs42 \cf2 \cb4 \strokec2 , at the beginning of the function, and then add the fields as you handle the request. Then, at the end of the function, return\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 response
+\f1\fs42 \cf2 \cb4 \strokec2 . For a partial solution of the handler function, see the\'a0
+\f0\b hints
+\f1\b0 \'a0section.\cb1 \uc0\u8232 \cb4 d. For the second endpoint, which is responsible for returning the model\'92s hyperparameters, create a\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 GET
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0method under the address\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /model_information
+\f1\fs42 \cf2 \cb4 \strokec2 . Its handler function should return the object returned by the model\'92s\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 get_params()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0method. This endpoint intends to provide a way to access the model\'92s information. Since we only have one model, having such an endpoint is not that critical; however, imagine having a service hosting several models and not knowing the particularities of each one of them. In such a scenario, it would make sense to provide a way to describe each model easily.\cb1 \uc0\u8232 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a new Dockerfile that uses as base the same Python image from Milestone 1.\cb1 \uc0\u8232 \cb4 a. In the Dockerfile, use Docker\'92s\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 COPY
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0instruction to copy the Python script, the\'a0
+\f3\i requirements.txt
+\f1\i0 \'a0file, and the exported model to the Docker image.\cb1 \uc0\u8232 \cb4 b. After\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 COPY
+\f1\fs42 \cf2 \cb4 \strokec2 , use\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 RUN
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to install the dependencies defined in\'a0
+\f3\i requirements.txt
+\f1\i0 .\cb1 \uc0\u8232 \cb4 c. Lastly, use\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 CMD
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to run the command that starts the service. As before, I recommend using the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 --host
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 --port
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0options, with values\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 0.0.0.0
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 8000
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0respectively, to specify the desired host address and port.\cb1 \uc0\u8232 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 After defining the Dockerfile, return to the terminal and build the image using as name\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 \{your_name\}/lp-service
+\f1\fs42 \cf2 \cb4 \strokec2 . Then, as we did before, run the Docker image using the publish or expose (
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 -p
+\f1\fs42 \cf2 \cb4 \strokec2 ) option to map the port you specified in the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 CMD
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0instruction to your computer. Doing so will start the Docker container with the web service running inside of it.\cb1 \uc0\u8232 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 To test the service, go to the browser and access the address printed by the script, followed by\'a0
+\f3\i /docs
+\f1\i0 ; for example,\'a0{\field{\*\fldinst{HYPERLINK "http://0.0.0.0:8000/docs"}}{\fldrslt 
+\f4\i \cf7 \strokec7 http://0.0.0.0:8000/docs}}. This link accesses the web service\'92s interactive API documentation. Here you can do things such as reviewing the endpoints, looking at their input schema, and even testing the endpoints with a single click. In this step, we will use the testing mechanism to test the web service.\cb1 \uc0\u8232 \cb4 a. For both endpoints, use the \'93try it out\'94 option to test them right from the web browser. In the case of the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /prediction
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0endpoint, try it twice, one time with\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0set to\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 false
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and a second time with the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0set to\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 true
+\f1\fs42 \cf2 \cb4 \strokec2 . If\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 false
+\f1\fs42 \cf2 \cb4 \strokec2 , the response should be an object with a key score. Otherwise, if\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0is true, the response should have a second key\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 anomaly_score
+\f1\fs42 \cf2 \cb4 \strokec2 . For the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /model_information
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0endpoint, the output should be an object where the keys are certain attributes of the model.\cb1 \uc0\u8232 \cb4 b. After executing each test, you will see a\'a0{\field{\*\fldinst{HYPERLINK "https://en.wikipedia.org/wiki/CURL"}}{\fldrslt 
+\f5 \cf7 \strokec7 cURL}}\'a0command already prepared with the address and input. Copy the commands and execute them from the terminal. The output you see there must be the same as the one from the interactive API documentation.\cb1 \uc0\u8232 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Extra task
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a\'a0{\field{\*\fldinst{HYPERLINK "https://hub.docker.com/"}}{\fldrslt 
+\f5 \cf7 \strokec7 Docker Hub}}\'a0account and push the image using\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 docker push ...
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Deliverable
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 This milestone requires three deliverables:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls4\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The service script.\cb1 \
+\ls4\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The Dockerfile.\cb1 \
+\ls4\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A file with the three cURL commands used for testing the endpoints and their responses.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 The web service script should specify the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 POST
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /prediction
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0endpoint, the\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 GET
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /model_information
+\f1\fs42 \cf2 \cb4 \strokec2 , their handler functions, and the model loading code. As for the Dockerfile, it should contain the instructions used to move the script, requirements.txt, and anomaly detector model inside the Docker image, and the commands that install the required libraries and start the service. Lastly, you need to deliver a file (Markdown format would be optimal) with the three cURL commands (two for\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /prediction
+\f1\fs42 \cf2 \cb4 \strokec2 , with\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 score
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0set to\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 true
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 false
+\f1\fs42 \cf2 \cb4 \strokec2 , and\'a0
+\f2\fs37\fsmilli18900 \cf5 \cb6 \strokec5 /model_information
+\f1\fs42 \cf2 \cb4 \strokec2 ) used to test the service.\cb1 \
+\cb4 In Milestone 6 and 7, we will integrate the metrics to the service and test it.\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author\'92s solution and peer solutions will appear on the page for you to examine.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Importance to project
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls5\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In this milestone, we learned how to deploy and serve a machine learning model in a web service. By doing so, we have \'93removed\'94 the model from its typical training setting and brought it into an ecosystem where users can interact with it. As more industries start to adopt machine learning models inside their products, it is vital to know ways to present them to the customer.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 We learned how to build a web service using FastAPI, a library that, in a short time, has proven itself as a tool capable of rapidly setting up web services for large production systems. While doing so, we explored concepts such as \'93GET\'94 and \'93POST\'94 methods, cURL, and an interactive document that excels at testing the service.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 As mentioned in Milestone 1, running services in Docker is becoming a common practice in the industry, and one of the reasons is the portability of Docker images. The service we created here runs entirely inside a Docker image. Everything about it, including the model and dependencies, exists in the image and not on our computers. This \'93containing\'94 nature allows anyone who has access to the image to execute the service without worrying about the details. As a bonus task, I invite you to upload your image to Docker Hub.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In Milestone 6, we will return to the service and add the metrics collection in it. In Milestone 7, we will integrate it with the monitoring stack.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Help
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Feeling stuck? Use as little or as much help as you need to reach the solution!\cb1 \
+\pard\pardeftab720\qr\partightenfactor0
+
+\f5\fs32 \cf8 \cb3 \strokec8 resources\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf9 \cb4 \strokec9 Machine Learning Bookcamp by Alexey Grigorev\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb10 \strokec2 Chapter 5, Unit 3, Managing Dependencies. This section provides an overview and example of how to manage machine learning dependencies inside a Docker container.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf11 \strokec11 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf9 \cb4 \strokec9 Bootstrapping Microservices with Docker, Kubernetes, and Terraform by Ashley Davis\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb10 \strokec2 Chapter 3, Unit 10, Docker Review. The entire chapter3 is an excellent resource for everything Docker. The section specified here offers a review of Docker basics: the terms and most common commands.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf11 \strokec11 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf9 \cb4 \strokec9 Succeeding with AI by Veljko Krunic\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb10 \strokec2 Chapter 5, Unit 1.1, The ML Pipeline in AI Projects.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf11 \strokec11 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b\fs42 \cf2 \cb4 \strokec2 Additional resources
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls6\ilvl0\cf7 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://fastapi.tiangolo.com/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 FastAPI reference}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls6\ilvl0\cf7 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://fastapi.tiangolo.com/#interactive-api-docs"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 FastAPI interactive docs}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+}

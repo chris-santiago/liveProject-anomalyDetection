@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Lato-Bold;\f1\fnil\fcharset0 Lato-Regular;\f2\froman\fcharset0 Times-Roman;
+\f3\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red251\green0\blue7;
+\red241\green241\blue241;\red18\green141\blue221;\red184\green14\blue61;\red247\green238\blue241;\red49\green49\blue49;
+\red5\green48\blue77;\red255\green255\blue231;\red38\green38\blue38;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\c83922;\cssrgb\c100000\c100000\c100000;\cssrgb\c100000\c0\c0;
+\cssrgb\c95686\c95686\c95686;\cssrgb\c392\c62745\c89412;\cssrgb\c78039\c14510\c30588;\cssrgb\c97647\c94902\c95686;\cssrgb\c25098\c25098\c25098;
+\cssrgb\c0\c25098\c37647;\cssrgb\c100000\c100000\c92549;\cssrgb\c20000\c20000\c20000;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid102\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl1120\sa600\partightenfactor0
+
+\f0\b\fs112 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Setting up the Docker Environment We Will Use for the Project\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf4 \cb5 \strokec4 Important! Be sure to read\'a0{\field{\*\fldinst{HYPERLINK "https://liveproject.manning.com/module/247_1_2/create-a-data-platform-to-detect-and-monitor-anomalies/introduction/start-project?"}}{\fldrslt 
+\f2 \cf6 \strokec6 Start Project}}\'a0before beginning. It contains crucial information for your work.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb5 \strokec2 Objective
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0\cf2 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Define a Docker image that runs a Jupyter server. Create a Jupyter notebook by accessing Jupyter from the host machine.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb5 Workflow
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls2\ilvl0\cf2 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a new directory and name it \'93liveProject.\'94 This location is the working directory, and is where we will develop our project.\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Within the directory, create a second directory and name it \'93jupyter.\'94 Then, in the jupyter directory, create a\'a0
+\f0\b Dockerfile
+\f1\b0 . This Dockerfile represents the image we will use to run Jupyter.\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the Dockerfile, define as base a Python image. A smaller one like\'a0{\field{\*\fldinst{HYPERLINK "https://hub.docker.com/_/python"}}{\fldrslt 
+\f2 \cf6 \strokec6 python:3.7-slim}}\'a0should suffice. Then, use the\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 RUN
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0instruction with command\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 mkdir src
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0to create a\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 /src
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0directory inside the container. Use the\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 WORKDIR
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0instruction to set\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 /src
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0as the working directory.\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the Dockerfile, add another\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 RUN
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0that installs Jupyter using\'a0{\field{\*\fldinst{HYPERLINK "https://pip.pypa.io/en/stable/"}}{\fldrslt 
+\f2 \cf6 \strokec6 pip}}, which is the Python package installer.\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Next, use the\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 CMD
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0instruction to specify the command that starts the Jupyter server.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls2\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Since we are inside a Docker container and we want to access Jupyter from the outside, we need to use the following options while starting the Jupyter server:\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 no-browser
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0and\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 allow-root
+\f1\fs42 \cf2 \cb5 \strokec2 . Besides this, I\'92d recommend using the\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 ip
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0and\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 port
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0options to explicitly define the IP and port where the server will run. You could use the IP address\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 0.0.0.0
+\f1\fs42 \cf2 \cb5 \strokec2 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls2\ilvl0\cf2 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 After defining the Dockerfile, on the terminal, use Docker\'92s\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 build
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0command to build the image using as name\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 \{your_name\}/lp-jupyter
+\f1\fs42 \cf2 \cb5 \strokec2 ; for example,\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 juan/lp-jupyter
+\f1\fs42 \cf2 \cb5 \strokec2 .\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Run the Docker image using the publish or expose option (
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 -p
+\f1\fs42 \cf2 \cb5 \strokec2 ) to port forward the port you used in the second\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 CMD
+\f1\fs42 \cf2 \cb5 \strokec2 \'a0command to the local machine. The command that runs the Docker image is named\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 run
+\f1\fs42 \cf2 \cb5 \strokec2 . This command will run the Docker image and start the Jupyter server. After running it, you will see on-screen the address where Jupyter is running. Click on it to access it.\cb1 \
+\ls2\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 From Jupyter, create a new notebook and print a \'93hello, world.\'94\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb5 Deliverable
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb5 The deliverable for this first Milestone is the Dockerfile and the Jupyter notebook.\cb1 \
+\cb5 The Dockerfile should contain the instructions and commands needed to run a Jupyter server from the container, while the Jupyter notebook should have a single cell that prints \'93hello, world.\'94\cb1 \
+\cb5 In the following sections, we will use the Docker image and its Jupyter to analyze the training dataset and training the anomaly detection model.\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb5 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author\'92s solution and peer solutions will appear on the page for you to examine.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb5 Importance to project
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Running processes in Docker containers is a common practice in the industry for many reasons, including the portability and ease of sharing the images, its ability to run almost everywhere, the isolation it provides, and because you can avoid installing dependencies on your machine.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 By defining, building, and running a Docker image, we\'92ve started to familiarize ourselves with some of the terms we will use in the project; for example, image and container.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 We will use the same Jupyter notebook we just created to analyze our dataset and train the model.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 We will create another Dockerfile to run the web service using a similar approach in a later milestone.\cb1 \uc0\u8232 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb5 Help
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb5 Feeling stuck? Use as little or as much help as you need to reach the solution!\cb1 \
+\pard\pardeftab720\qr\partightenfactor0
+
+\f2\fs32 \cf9 \cb3 \strokec9 resources\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf10 \cb5 \strokec10 Bootstrapping Microservices with Docker, Kubernetes, and Terraform by Ashley Davis\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb11 \strokec2 Chapter 3 Unit 10, Docker Review. The entire chapter 3 (\'93Publishing your First Microservice) is an excellent resource for everything Docker. The Unit specified here reviews the basics of Docker, including terms and most common commands.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf12 \strokec12 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf10 \cb5 \strokec10 Machine Learning Bookcamp by Alexey Grigorev\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb11 \strokec2 Appendix A 2, Running Jupyter. This section offers a brief introduction to Jupyter, including how to start a server using the\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 no-browser
+\f1\fs42 \cf2 \cb11 \strokec2 \'a0and\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 ip
+\f1\fs42 \cf2 \cb11 \strokec2 \'a0options mentioned above.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf12 \strokec12 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b\fs42 \cf2 \cb5 \strokec2 Additional resources
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls4\ilvl0\cf6 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/reference/builder/#run"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Dockerfile\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 RUN
+\f1\fs42 \cf6 \cb5 \strokec6 \'a0instruction reference}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls4\ilvl0\cf6 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/reference/builder/#workdir"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Dockerfile\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 WORKDIR
+\f1\fs42 \cf6 \cb5 \strokec6 \'a0instruction reference}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls4\ilvl0\cf6 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/reference/builder/#cmd"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Dockerfile\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 CMD
+\f1\fs42 \cf6 \cb5 \strokec6 \'a0instruction reference}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls4\ilvl0\cf6 \cb5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/engine/reference/run/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec6 Docker\'a0
+\f3\fs37\fsmilli18900 \cf7 \cb8 \strokec7 run
+\f1\fs42 \cf6 \cb5 \strokec6 \'a0command reference}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+}

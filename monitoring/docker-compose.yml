@@ -1,0 +1,63 @@
+version: "3"
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
+services:
+  prometheus:
+    image: prom/prometheus:v2.20.0
+    container_name: prometheus
+    volumes:
+      - ../prometheus:/etc/prometheus
+      - prometheus_data:/prometheus
+    # prometheus container declares entrypoint of "/bin/prometheus"
+    # so no need to include in command
+    command: [
+      "--config.file=/etc/prometheus/prometheus.yml",
+      "--storage.tsdb.path=prometheus_data",
+      "--storage.tsdb.retention.time=48h"
+    ]
+    restart: unless-stopped
+    expose: 
+      - 9090
+    # FOR TESTING, ONLY
+    # ports:
+    #   - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:7.1.1
+    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    restart: unless-stopped
+    expose: 
+      - 3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    # FOR TESTING, ONLY
+    # ports:
+    #   - "3000:3000"
+
+  caddy:
+    image: stefanprodan/caddy
+    container_name: caddy
+    volumes:
+      - ./caddy:/etc/caddy
+    restart: unless-stopped
+    environment:
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    ports:
+      - "3000:3000"
+      - "9090:9090"
+
+  web:
+    image: chris/lp-service
+    container_name: service
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+

@@ -1,0 +1,236 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Lato-Bold;\f1\fnil\fcharset0 Lato-Regular;\f2\fnil\fcharset0 Lato-Italic;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red241\green241\blue241;
+\red41\green101\blue168;\red184\green14\blue61;\red247\green238\blue241;\red49\green49\blue49;\red5\green48\blue77;
+\red255\green255\blue231;\red38\green38\blue38;\red18\green141\blue221;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\c83922;\cssrgb\c100000\c100000\c100000;\cssrgb\c95686\c95686\c95686;
+\cssrgb\c20000\c47843\c71765;\cssrgb\c78039\c14510\c30588;\cssrgb\c97647\c94902\c95686;\cssrgb\c25098\c25098\c25098;\cssrgb\c0\c25098\c37647;
+\cssrgb\c100000\c100000\c92549;\cssrgb\c20000\c20000\c20000;\cssrgb\c392\c62745\c89412;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid401\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
+{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl1120\sa600\partightenfactor0
+
+\f0\b\fs112 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Analyzing and Visualizing the Anomalous Dataset\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\fs42 \cf2 \cb4 Objective
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Explore and visualize the dataset we will use to train the anomaly detector.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 About the dataset
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Our project\'92s dataset is a sample of a real-life dataset obtained from the author\'92s organization,\'a0
+\f0\b LOVOO
+\f1\b0 , a dating and social application. This dataset presents two features related to the users\'92 spending patterns of the in-app currency (named\'a0
+\f0\b credit
+\f1\b0 ) during a particular period. The first feature,\'a0
+\f2\i mean
+\f1\i0 , is the normalized average amount of credits a user has spent during that time, while the second feature,\'a0
+\f2\i sd
+\f1\i0 , is the standard deviation (also normalized). During the dataset analysis, you will see that most values are concentrated in the same region , while others are very far from the tendency . In some cases, these abnormal values are outliers or anomalies\'97users whose spending behavior differs from the normality.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls2\ilvl0\cf5 \cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://lp-prod-resources.s3.amazonaws.com/247/43590/2021-02-01-16-43-57/Datasets.zip"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 Datasets.zip}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Workflow
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add the training (
+\f2\i train.csv
+\f1\i0 ) and test (
+\f2\i test.csv
+\f1\i0 ) datasets to the\'a0
+\f2\i liveProject/jupyter/
+\f1\i0 \'a0directory from the previous Milestone.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Create a\'a0
+\f2\i requirements.txt
+\f1\i0 \'a0file and define the libraries we will use to analyze the dataset. Some of the libraries we need are\'a0
+\f0\b pandas
+\f1\b0 \'a0(to work with the dataset) and\'a0
+\f0\b Plotly
+\f1\b0 \'a0(to visualize it).Feel free to add others you might find convenient.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the same Dockerfile from Milestone 1, add a\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 COPY
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0instruction to copy\'a0
+\f2\i requirements.txt
+\f1\i0 \'a0into the working directory (see Milestone 1, step 3). Next, use the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 RUN
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0instruction to install the packages from\'a0
+\f2\i requirements.txt
+\f1\i0 .\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Build the Docker image as we did in Milestone 1, step 6.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Now, we will start the Jupyter service by using the same instruction from Milestone 1, step 7.\cb1 \uc0\u8232 \cb4 a. On this occasion, since we want to use the datasets in the notebooks, we need to use a\'a0
+\f0\b bind mount
+\f1\b0 \'a0in the container. Quoting the official Docker documentation, \'93when you use a bind mount, a file or directory on the host machine is mounted into a container.\'94 In other words, you will be able to access a directory of the host machine from within the Docker container. The directory we will mount, also known as the\'a0
+\f0\b source
+\f1\b0 , is the current directory\'a0
+\f2\i liveProject/jupyter/
+\f1\i0 \'a0(the one containing the datasets and the Dockerfile). The\'a0
+\f0\b target
+\f1\b0 \'a0(the path in the container where we want to bind the source directory) is the container\'92s working directory (
+\f2\i /src
+\f1\i0 ). To create it, use the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 -v
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0or\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 --mount
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0flag in the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker run
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0command.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Once the server is running, go to Jupyter and create a new notebook named\'a0
+\f2\i exploration
+\f1\i0 .\cb1 \uc0\u8232 \cb4 a. With the notebook up and running, import pandas and Plotly from the first cell. Then, use pandas to load both the training and test datasets into a pandas\'a0
+\f0\b DataFrame
+\f1\b0 . If the directory was correctly mounted, you should see both datasets in the list of files.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Visualize and examine the dataset by doing the following:\cb1 \uc0\u8232 \cb4 a. Use the DataFrame\'92s\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 head()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0method to print the dataset\'92s first five rows. If you wish to see more, change the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 n
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0parameter to the desired number of rows.\cb1 \uc0\u8232 \cb4 b. Call the dataset\'92s\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 shape
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0attribute to print the dataset\'92s dimensionality. The output is a tuple of size two, where the first value is the DataFrame\'92s numbers of rows, and the second, the number of columns.\cb1 \uc0\u8232 \cb4 c. Use the method\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 describe()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to calculate descriptive statistics for the dataset\'92s two features. This method prints a table containing each of the features\'92 count (number of entries), mean value, standard deviation, minimum and max values, and percentiles.\cb1 \uc0\u8232 \cb4 d. With Plotly, draw a\'a0
+\f0\b scatterplot
+\f1\b0 \'a0where the x-axis is the dataset\'92s\'a0
+\f2\i mean
+\f1\i0 \'a0feature and the y-axis is the\'a0
+\f2\i sd
+\f1\i0 \'a0feature. Each point in the graph represents one data observation from the dataset. If you hover over the data points using the mouse, you will see the data point\'92s value. For example, if you move the cursor over the rightmost point, you will see that the mean feature value is\'a0
+\f0\b 66.324
+\f1\b0 , which should also be the maximum value for that feature as seen on the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 describe()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0function\'92s output.\cb1 \uc0\u8232 \cb4 e. Use two histograms to visualize both features\'92 distributions with parameter\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 nbins
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0set to\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 20
+\f1\fs42 \cf2 \cb4 \strokec2 . Due to very large values in both features, the distributions should look highly right-skewed, meaning that many of its values are less than the mean. As a result, the plot\'92s peak is on the left end of the graph.\cb1 \uc0\u8232 \cb4 f. Last, we will draw two\'a0
+\f0\b boxplots
+\f1\b0 \'a0(again, one per feature). A boxplot is a visualization for representing the spread of the data and its quantiles. Its name is because it uses a box and two lines (known as whiskers), where the ends of the box mark the\'a0
+\f0\b first
+\f1\b0 \'a0(Q1) and\'a0
+\f0\b third quartile
+\f1\b0 \'a0(Q3), and the whiskers, the\'a0
+\f0\b lower
+\f1\b0 \'a0and\'a0
+\f0\b upper limits
+\f1\b0 . These lower and upper limits are calculated by their respective formulas\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 Q1 \'96 1.5 * (Q3-Q1)
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 Q1 + 1.5 * (Q3-Q1)
+\f1\fs42 \cf2 \cb4 \strokec2 . The values falling outside these limits are categorized as\'a0
+\f0\b outliers
+\f1\b0 . At a quick glance, the boxplots show the outlier data points above the upper limit and a horizontal line instead of a box\'97this line is the box! But we see it flat instead of squared because the distance between the Q3 and Q1 (known as the\'a0
+\f0\b interquartile range
+\f1\b0 ) is extremely small compared to the large outlier values. However, since Plotly graphs are interactive, you could zoom in until the line starts to resemble a box. You can find an example of some of these visualizations in the \'93full solution\'94 help layer.\cb1 \uc0\u8232 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Save the notebook.\cb1 \uc0\u8232 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Extra task
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls4\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use your favorite method or library to explore the datasets further.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Deliverable
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 This milestone requires five deliverables:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls5\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The requirements.txt file.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The Jupyter notebook.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The training dataset\'92s scatter plot.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The training dataset\'92s histogram plot.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The training dataset\'92s box plot.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 The\'a0
+\f2\i requirements.txt
+\f1\i0 \'a0file should at least contain the pandas and Plotly entries.\cb1 \
+\cb4 The notebook is the one we just created for the data analysis. It should have the datasets loading statements, plots generations, and the printed statements produced the pandas functions we discussed.\cb1 \
+\cb4 Last, we need to deliver the three plots (scatter plot, histogram, and box plot) we created using the training dataset.\cb1 \
+\cb4 In Milestone 3, we will train a model using the data we just explored.\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author\'92s solution and peer solutions will appear on the page for you to examine.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Importance to project
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls6\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Analyzing and visualizing a dataset\'97the task we\'92ve done here\'97is an essential step when working with data. With three visualizations, we have examined the shape and the details behind the training dataset. Furthermore, we discovered that the data\'92s features are very far from resembling a bell-shaped normal distribution, and instead, are skewed by many observations we could consider outliers. Armed with this knowledge, we are now better prepared to fit a model using the data, which we will do in the next Milestone.\cb1 \uc0\u8232 \
+\ls6\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Besides visualizing the dataset, we learned how to get a statistical summary of the data with the\'a0
+\f3\fs37\fsmilli18900 \cf6 \cb7 \strokec6 describe()
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0function. This function reports several statistical properties of the data, such as its mean and standard deviation values, quantiles, and count.\cb1 \uc0\u8232 \
+\ls6\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 We used Plotly, a visualization library, to interactively visualize the data. You might have noticed that out of the box, Plotly adds a widget on the plot with various controls for zooming in, resizing it, autoscale, pan, saving the image as a PNG file, and more. Besides this, without having to do extra work, a Plotly graph provides additional information, such as the data points\'92 values, box plot\'92s attributes (the fences and quantiles), and the histograms bucket information by just hovering over them using the mouse. These values are useful data we can always examine when doing an exploratory data analysis.\cb1 \uc0\u8232 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Help
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Feeling stuck? Use as little or as much help as you need to reach the solution!\cb1 \
+\pard\pardeftab720\qr\partightenfactor0
+
+\f4\fs32 \cf8 \cb3 \strokec8 resources\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf9 \cb4 \strokec9 Machine Learning Bookcamp by Alexey Grigorev\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb10 \strokec2 Chapter 2, Unit 2, Exploratory Data Analysis. This Unit describes the essential concepts behind the task known as exploratory data analysis and presents a use case with examples.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf11 \strokec11 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\fs42 \cf2 \cb4 \strokec2 Unit 5,\'a0{\field{\*\fldinst{HYPERLINK "https://liveproject.manning.com/module/247_3_2/create-a-data-platform-to-detect-and-monitor-anomalies/2--analyzing-and-visualizing-the-anomalous-dataset/2-2-submit-your-work?"}}{\fldrslt \cf12 \strokec12 Setting up reproducible environments & application deploys}}\'a0in the liveVideo,\'a0
+\f2\i Talk Python: Managing Python Dependencies
+\f1\i0 , by Dan Bader. This liveVideo presents an in-depth explanation of how to work with the requirements.txt file and with Python dependencies in general.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Additional resources
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls7\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pandas\'92\'a0{\field{\*\fldinst{HYPERLINK "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.head.html"}}{\fldrslt \cf12 \strokec12 head()}}\'a0function.\cb1 \uc0\u8232 \
+\ls7\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pandas\'92\'a0{\field{\*\fldinst{HYPERLINK "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.shape.html"}}{\fldrslt \cf12 \strokec12 shape}}\'a0property.\cb1 \uc0\u8232 \
+\ls7\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Pandas\'92\'a0{\field{\*\fldinst{HYPERLINK "https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html"}}{\fldrslt \cf12 \strokec12 describe()}}\'a0function.\cb1 \uc0\u8232 \
+\ls7\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Plotly\'92s \'93{\field{\*\fldinst{HYPERLINK "https://plotly.com/python/line-and-scatter/"}}{\fldrslt \cf12 \strokec12 Scatter Plots in Python}}.\'94\cb1 \uc0\u8232 \
+\ls7\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Plotly\'92s \'93{\field{\*\fldinst{HYPERLINK "https://plotly.com/python/histograms/"}}{\fldrslt \cf12 \strokec12 Histograms in Python}}.\'94\cb1 \uc0\u8232 \
+\ls7\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Plotly\'92s \'93{\field{\*\fldinst{HYPERLINK "https://plotly.com/python/box-plots/"}}{\fldrslt \cf12 \strokec12 Box Plots in Python}}.\'94\cb1 \uc0\u8232 \
+}

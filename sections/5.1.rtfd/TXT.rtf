@@ -1,0 +1,579 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Lato-Bold;\f1\fnil\fcharset0 Lato-Regular;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\froman\fcharset0 Times-Bold;\f4\fnil\fcharset0 Lato-Italic;\f5\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red241\green241\blue241;
+\red38\green38\blue38;\red184\green14\blue61;\red247\green238\blue241;\red18\green141\blue221;\red242\green242\blue242;
+\red49\green49\blue49;\red5\green48\blue77;\red255\green255\blue231;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\c83922;\cssrgb\c100000\c100000\c100000;\cssrgb\c95686\c95686\c95686;
+\cssrgb\c20000\c20000\c20000;\cssrgb\c78039\c14510\c30588;\cssrgb\c97647\c94902\c95686;\cssrgb\c392\c62745\c89412;\cssrgb\c96078\c96078\c96078;
+\cssrgb\c25098\c25098\c25098;\cssrgb\c0\c25098\c37647;\cssrgb\c100000\c100000\c92549;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid202\'02\'01.;}{\levelnumbers\'01;}\fi-360\li1440\lin1440 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid203\'02\'02.;}{\levelnumbers\'01;}\fi-360\li2160\lin2160 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid301\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
+{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl1120\sa600\partightenfactor0
+
+\f0\b\fs112 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Setting up the Monitoring Stack (Prometheus and Grafana)\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\fs42 \cf2 \cb4 Objective
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls1\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Use Docker Compose to run Prometheus and Grafana.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Introduction
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 Before discussing the workflow, I\'92d like to take a few minutes to give a brief overview of the monitoring stack, its components, and how we will build it.\cb1 \
+\cb4 In this Milestone, we will set up and run our monitoring stack responsible for tracking and visualizing the metrics we will gather in Milestone 6. The stack consists of three components:\'a0
+\f0\b Prometheus
+\f1\b0 ,\'a0
+\f0\b Grafana
+\f1\b0 , and\'a0
+\f0\b Caddy
+\f1\b0 . As mentioned before,\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls2\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Prometheus is a monitoring system and the platform on which we will write our metrics.\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Grafana is an analytics and dashboard solution that provides numerous charts to display metrics that are gathered in the data sources it supports. For our project, Prometheus is the data source.\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Caddy is a reverse proxy service that\'92s not directly linked to monitoring. However, we will use it as a basic authentication provider to control access to Prometheus\'92 web interface.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 We will execute each of these platforms inside Docker containers. Moreover, since we must share data among the containers, we need a way to manage their interactivity. We will do this with Docker Compose. Using Docker Compose involves working with a YAML file\'97known as docker-compose.yml\'97in which you will configure the services. In the YAML file, you configure things like the name of the image you wish to execute, the ports to expose between the service, and the volumes each container needs. We will see more of this as we go through the exercise.\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 In the past Milestones, we created our Docker images. For this one, we will leverage the portability feature of Docker and use images others have made. For reproducibility purposes, and to make sure we all have the same images, I recommend using the followings:\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf5 \strokec5 \pard\pardeftab720\partightenfactor0
+\cf5 \
+\
+\pard\pardeftab720\sl600\partightenfactor0
+
+\fs42 \cf2 \cb4 \strokec2 With that out of the way, let\'92s build our monitoring stack! And again, if you have any questions, please do ask in the chat or consult the recommended resources available at the end.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Workflow
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Within the same\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 liveproject/
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0directory we\'92ve been using, create a new directory and name it\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 monitoring
+\f1\fs42 \cf2 \cb4 \strokec2 . Inside the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 monitoring
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0directory , create the Docker Compose file, named\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker-compose.yml
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the YAML file, specify the version of the Compose file format using the top-level key\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 version
+\f1\fs42 \cf2 \cb4 \strokec2 . Use the value\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3
+\f1\fs42 \cf2 \cb4 \strokec2 . For a quick introduction to Docker Compose and its terms, I highly suggest checking out the resources recommended at the end of this document.\cb1 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 After\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 version
+\f1\fs42 \cf2 \cb4 \strokec2 , create a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 volumes
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0top-level key. Under this key, we will define and create the containers\'92\'a0{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/compose/compose-file/#volumes"}}{\fldrslt 
+\f3\b \cf8 \strokec8 named volumes}}. In Docker-speech, a volume is a storage used to persist data outside of the container. That way, the data won\'92t get destroyed even if the container is.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Under this tag, define two named volumes called\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus_data
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 grafana_data
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Let\'92s take a small break from the Compose file. In the same directory (
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 monitoring
+\f1\fs42 \cf2 \cb4 \strokec2 ), create a new directory and name it\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and inside it, create a file named\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus.yml
+\f1\fs42 \cf2 \cb4 \strokec2 . This file defines the target we wish to scrape (which is our ML service). Note the file is another YAML, so it follows the same structure as\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker-compose.yml
+\f1\fs42 \cf2 \cb4 \strokec2 .\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 As a good practice, create a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 global
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key. Under it, add the key\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_interval
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0with the value set to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 15s
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to scrape each source every 15 seconds.\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Then, create a second key,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_configs
+\f1\fs42 \cf2 \cb4 \strokec2 , used to configure the specific targets from which we want to scrape metrics. In our case, that\'92s the anomaly detector service. This tag requires several others:\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 job_name
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_interval
+\f1\fs42 \cf2 \cb4 \strokec2 , and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 static_configs
+\f1\fs42 \cf2 \cb4 \strokec2 , with the latter needing a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 targets
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key whose value is a list of the addresses we want to scrape. For\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 job_name
+\f1\fs42 \cf2 \cb4 \strokec2 , use the value\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 service
+\f1\fs42 \cf2 \cb4 \strokec2 , for\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_interval
+\f1\fs42 \cf2 \cb4 \strokec2 , feel free to choose any value (for example,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 10s
+\f1\fs42 \cf2 \cb4 \strokec2 ), and for\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 targets
+\f1\fs42 \cf2 \cb4 \strokec2 , a list with one value\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 'service:\{service_port\}'
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0(for example,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ['service:8000']
+\f1\fs42 \cf2 \cb4 \strokec2 ).\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Back at the Compose file, we will now define the Prometheus service. To do so, create a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 services
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0top-level key. Under this key, create another one named\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 . Here, we require six keys to configure our Prometheus service; we will dedicate one section per key.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The first one is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 image
+\f1\fs42 \cf2 \cb4 \strokec2 ; use as value the Prometheus image mentioned in the introduction .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Next is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 container_name
+\f1\fs42 \cf2 \cb4 \strokec2 , which we should set to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The third one is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 volumes
+\f1\fs42 \cf2 \cb4 \strokec2 , and we need to define the volumes we want to use with Prometheus. One of the volumes we need to mount is a host volume where the source (the location on the host\'92s filesystem) is the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0directory we created in step 4, and the target is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 /etc/prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 . The second volume is the named volume we created earlier\'97its target should be\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 /prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The next key is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 command
+\f1\fs42 \cf2 \cb4 \strokec2 , used to override the default commands. On this occasion, we will use it to set several options at the time of executing Prometheus.\
+\pard\tx1660\tx2160\pardeftab720\li2160\fi-2160\sl600\partightenfactor0
+\ls3\ilvl2\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The first flag is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 --config.file
+\f1\fs42 \cf2 \cb4 \strokec2 . It needs to be set to the location of the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus.yml
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0file within the container. In other words, it is not the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus.yml
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0file we have on the host machine. For a hint, take another look at the host volume.\cb1 \
+\ls3\ilvl2\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 A second flag we need is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 --storage.tsdb.path
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to set where Prometheus writes its database. Set its value to the target of the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus_data
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0named volume.\cb1 \
+\ls3\ilvl2\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The last flag we will use is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 --storage.tsdb.retention.time
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to explicitly define when we want to delete the old data. It defaults to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 15d
+\f1\fs42 \cf2 \cb4 \strokec2 , meaning that data is stored for 15 days. Select a retention period that suits your needs, for instance,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 48h
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Next, comes the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 restart
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key, used to set the restart policy. For our project, let\'92s use\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 unless-stopped
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to restart the container if it stops, but not if it was manually stopped.\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Last, use the key\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 expose
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to expose a port and make Prometheus accessible to the other services. Note that this does not expose the container to the host machine. Use the port\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 9090
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Before moving on to the next service, let\'92s test what we currently have to make sure we are on the right track. In the terminal (while at the\'a0
+\f4\i monitoring/
+\f1\i0 \'a0directory), execute\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker-compose up -d
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to start the container. Then, run\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker ps
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to check the status. You should see something like this:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\partightenfactor0
+\ls3\ilvl0
+\f2\fs26 \cf5 \cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS               NAMES\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 6f9dddb123ca        prom/prometheus:v2.20.0   "/bin/prometheus --c\'85"   8 minutes ago       Up 6 minutes        9090/tcp            prometheus\
+\ls3\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \uc0\u8232 
+\f1\fs42 \cf2 \cb4 \strokec2 Now, we do a bit of cheating and add something that we\'92ll\'a0
+\f0\b ONLY
+\f1\b0 \'a0use for testing (I\'92m trusting you!). Back at Prometheus\'92 service definition, add an extra key,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ports
+\f1\fs42 \cf2 \cb4 \strokec2 , to map the container\'92s\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 9090
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0port to the local machine\'92s\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 9090
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0(as we did before). Then, once again run\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker-compose up -d
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to recreate and launch the container. Now, access\'a0{\field{\*\fldinst{HYPERLINK "http://localhost:9090/"}}{\fldrslt 
+\f5 \cf8 \strokec8 http://localhost:9090}}\'a0to see Prometheus\'92 web UI. We won\'92t do anything for now, but after testing, please remove the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ports
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key from the service\'97we just used it to test the container.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Again, let\'92s step back from the Compose file. In the\'a0
+\f4\i monitoring/
+\f1\i0 \'a0directory, create the (nested) directory\'a0
+\f4\i grafana/provisioning/datasources
+\f1\i0 \'a0and inside it a new file named\'a0
+\f4\i datasources.yml
+\f1\i0 . In this configuration file, you will add the data sources you want to use in Grafana.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Go to the\'a0
+\f4\i datasources.yml
+\f1\i0 \'a0file. In the first line, add the key\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 apiVersion
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and set its value to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 1
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Under it, add a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 datasources
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key, whose value is a list of data sources we wish to add. We\'92ll add one (the Prometheus data source).\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 To define the data source, first, add the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 name
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and use the value\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 Prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 . (Since this is the first item of the list, you need to add a hyphen before the key). Then, add a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 type
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key and set it to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 prometheus
+\f1\fs42 \cf2 \cb4 \strokec2 . Following it, create and set\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 access
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 proxy
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 orgId
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 1
+\f1\fs42 \cf2 \cb4 \strokec2 , the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 url
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 http://prometheus:9090
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0(make sure the address matches Prometheus\'92s container name and the port is the exposed one). Last, use\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 basicAuth
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and set it to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 false
+\f1\fs42 \cf2 \cb4 \strokec2 , and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 isDefault
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 editable
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 true
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Back in the Compose file, we will now define the Grafana service similar to how we defined the Prometheus one. Once again, we need the same keys\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 image
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 container_name
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 volumes
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 restart
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 expose
+\f1\fs42 \cf2 \cb4 \strokec2 , and one we didn\'92t see before,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 environment
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0(note we do not need\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 command
+\f1\fs42 \cf2 \cb4 \strokec2 ).\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Set the values of the keys\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 image
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 container_name
+\f1\fs42 \cf2 \cb4 \strokec2 , and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 restart
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 For\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 expose
+\f1\fs42 \cf2 \cb4 \strokec2 , use\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3000
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 As for volumes, map the named volume\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 grafana_data
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 /var/lib/grafana
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and create a host volume that maps the provisioning directory (not datasources) to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 /etc/grafana/provisioning
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 environment
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key, we will set three environmental variables. The first of these,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_SECURITY_ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 , specifies the default user. Set its value to the variable\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0(we will assign its value once we run the Docker Compose); for example,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_SECURITY_ADMIN_USER=$\{ADMIN_USER\}
+\f1\fs42 \cf2 \cb4 \strokec2 . Additionally, you could add a default value in case\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0is never set (see the\'a0{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/compose/compose-file/#variable-substitution"}}{\fldrslt 
+\f5 \cf8 \strokec8 Compose file reference and guidelines}}). The second env variable is\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_SECURITY_ADMIN_PASSWORD
+\f1\fs42 \cf2 \cb4 \strokec2 , and its value is the variable\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_PASSWORD
+\f1\fs42 \cf2 \cb4 \strokec2 . Then, we have\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_USERS_ALLOW_SIGN_UP
+\f1\fs42 \cf2 \cb4 \strokec2 , which allows new users to create accounts. We do not want this, so set its value to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 false
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 To test Grafana, add to the service definition a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ports
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key to map the port\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3000
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3000
+\f1\fs42 \cf2 \cb4 \strokec2 . Then, run\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker-compose up -d
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to run the containers, and after, access\'a0{\field{\*\fldinst{HYPERLINK "http://localhost:3000/"}}{\fldrslt 
+\f5 \cf8 \strokec8 http://localhost:3000}}\'a0to see Grafana\'92s logging screen. That\'92s all for now. Again, please remove the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ports
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key from the service :).\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Now comes the last service, Caddy. Again, we will first add a configuration file, followed by defining the file in Compose. In the monitoring directory, create a new directory named\'a0
+\f4\i caddy
+\f1\i0 , and inside it, create a file\'a0
+\f4\i Caddyfile
+\f1\i0 \'a0(without extension). On this occasion, we will provide the content of the Caddyfile.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Copy and paste the following in the Caddyfile:
+\f2\fs26 \cf5 \cb9 \strokec5 :9090 \{\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl360\partightenfactor0
+\ls3\ilvl1\cf5 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     basicauth / \{$ADMIN_USER\} \{$ADMIN_PASSWORD\}\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     proxy / prometheus:9090 \{\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5             transparent\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5         \}\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	6.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	7.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     errors stderr\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	8.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     tls off\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	9.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5         \}\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	10.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	11.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 :3000 \{\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     proxy / grafana:3000 \{\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5             transparent\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	14.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5             websocket\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	15.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5         \}\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	16.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	17.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     errors stderr\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	18.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5     tls off\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	19.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \}\
+\ls3\ilvl1\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	20.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \uc0\u8232 
+\f1\fs42 \cf2 \cb1 \strokec2 \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	21.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The most important thing we are doing here is setting an authentication mechanism for Prometheus. So when a user accesses the Prometheus web interface, it will ask for the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_PASSWORD
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	12.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Back in the Compose file, add the Caddy service.\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl600\partightenfactor0
+\ls3\ilvl1\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Define the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 image
+\f1\fs42 \cf2 \cb4 \strokec2 ,\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 container_name
+\f1\fs42 \cf2 \cb4 \strokec2 , and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 restart
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0variables.\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Include a\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 volume
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0key with a host volume mapping the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 caddy
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0directory to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 /etc/caddy
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Add an environment key with two environmental variables\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_PASSWORD
+\f1\fs42 \cf2 \cb4 \strokec2 , whose values are the same as those you used for Grafana\'92s\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_SECURITY_ADMIN_USER
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 GF_SECURITY_ADMIN_PASSWORD
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\ls3\ilvl1\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Last, use the key\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ports
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to forward the ports\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3000
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 9090
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 3000
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 9090
+\f1\fs42 \cf2 \cb4 \strokec2 , respectively (similar to how we did it with the Dockerfile). This mapping ensures access to Grafana and Prometheus from the local machine.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls3\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	13.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Now, let\'92s test the system. In the terminal (while at the monitoring directory), execute\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to start the containers. That\'92s all we need. To make sure they are running, run\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 docker ps
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0to check the status.\cb1 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	14.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In the browser, go to\'a0{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:9090/graph"}}{\fldrslt 
+\f5 \cf8 \strokec8 http://127.0.0.1:9090/graph}}\'a0to access the Prometheus console. It will first ask you to enter the user\'92s credentials\'97use \'93admin\'94 and \'93admin.\'94 For now, there\'92s not much to see since we are not collecting any metrics yet. To double-check everything, go to\'a0
+\f0\b status
+\f1\b0 \'a0->\'a0
+\f0\b configuration
+\f1\b0 , and you should see the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_configs
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0object you defined earlier. Next, go to\'a0{\field{\*\fldinst{HYPERLINK "http://127.0.0.1:3000/?orgId=1"}}{\fldrslt 
+\f5 \cf8 \strokec8 http://127.0.0.1:3000/?orgId=1}}\'a0to access Grafana. Again, it will ask for your credentials. While in it, go to\'a0
+\f0\b configuration
+\f1\b0 \'a0->\'a0
+\f0\b data sources
+\f1\b0 , and you should find the Prometheus data source. Then, create a new dashboard and name it \'93Service.\'94 We\'92ll return to it later.\cb1 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	15.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Take a break and celebrate! Milestone\'92s finished :).\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Deliverable
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 This milestone requires four deliverables:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls4\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The Docker Compose file.\cb1 \
+\ls4\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Grafana\'92s datasource.yml file.\cb1 \
+\ls4\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Prometheus\'92s config file.\cb1 \
+\ls4\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The \'93Service\'94 dashboard JSON model. To obtain it, go to the settings of the dashboard we created in Point 14 and click on \'93JSON Model.\'94\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+\cf2 \cb4 The Docker Compose file should contain all the services we introduced here, as well as their configuration, e.g., exposed ports, commands, and volumes. The Grafana datasource.yml file needs to have the Prometheus data source defined, and the Prometheus\'92 configuration file, the\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 global
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0and\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_configs
+\f1\fs42 \cf2 \cb4 \strokec2 \'a0keys. As for the \'93JSON Model,\'94 copy and paste the JSON content in a new file and name it\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 dashboard.json
+\f1\fs42 \cf2 \cb4 \strokec2 .\cb1 \
+\cb4 In Milestone 6, we will gather and export metrics from the service, and in Milestone 7, we will display them on the dashboard.\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author\'92s solution and peer solutions will appear on the page for you to examine.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Importance to project
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls5\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In this milestone, we learned how to set up a monitoring stack using Prometheus, Grafana, Caddy, and Docker Compose. In the previous Milestones, we worked with containers that work on their own. While this works for small and simple projects, in reality, you will encounter many cases where you need to define and orchestrate multi-container applications. To achieve this, one of the most accessible tools is Docker Compose.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Generally speaking, metrics \'97 and this might sound a bit opinionated\'97are an essential part of a production system. Platforms nowadays are far from simple. They consist of tens, if not hundreds of moving parts, processes, inputs, outputs, and more. As a result, it is practically impossible to monitor them manually. For that, we have monitoring systems. With these tools, we can generate metrics that we could later use to assess the system. Moreover, these tools often support alerts, which, as the name indicates, are alerts that trigger once some condition is met. For a data-related project such as ours, monitoring is also crucial. In this setting, we could monitor things like the status of the data sources, the predictions of a machine learning model, or in the case of a real-time event system, we could measure the difference between the event time and the time it was processed; in other words, the lag. Figure 1 shows an example of a machine learning system presented in the previously cited paper, \'93{\field{\*\fldinst{HYPERLINK "https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf"}}{\fldrslt 
+\f5 \cf8 \strokec8 Hidden Technical Debt in Machine Learning Systems}},\'94 by Sculley et al. There you find the monitoring portion of the system sitting alongside the rest of the ML platform.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In this Milestone, we have added access control to Prometheus, thanks to Caddy. This feature is tightly related to the concept of data governance mentioned in the project\'92s introduction.\cb1 \
+\ls5\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 In Milestone 7, we will return to the Docker Compose file to add our machine learning service and test the metrics we will gather in Milestone 6.\cb1 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b \cf2 \cb4 Help
+\f1\b0 \cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+\cf2 \cb4 Feeling stuck? Use as little or as much help as you need to reach the solution!\cb1 \
+\pard\pardeftab720\qr\partightenfactor0
+
+\f5\fs32 \cf10 \cb3 \strokec10 resources\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf11 \cb4 \strokec11 Bootstrapping Microservices with Docker, Kubernetes, and Terraform by Ashley Davis\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb12 \strokec2 Chapter 4, Unit 3, Developing Microservices with Docker Compose. This section covers Docker Compose. It explains what it is, why it is useful, how to create a Docker Compose file, and how to manage the applications.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf5 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf11 \cb4 \strokec11 Microservices Security in Action by Prabath Siriwardena and Nuwan Dias\cb1 \
+\pard\pardeftab720\sl600\partightenfactor0
+
+\f1\b0\fs42 \cf2 \cb12 \strokec2 Chapter 5, Unit 2.1, Monitoring the Order Processing Microservice . This section thoroughly covers Prometheus, including an introduction to the system and an explanation of its configuration file, and provides an example of how to define a data source using\'a0
+\f2\fs37\fsmilli18900 \cf6 \cb7 \strokec6 scrape_configs
+\f1\fs42 \cf2 \cb12 \strokec2 .\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf5 \strokec5 \
+\pard\pardeftab720\sl600\sa600\partightenfactor0
+
+\f0\b\fs42 \cf2 \cb4 \strokec2 Additional resources
+\f1\b0 \cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls6\ilvl0\cf2 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \'93{\field{\*\fldinst{HYPERLINK "https://papers.nips.cc/paper/5656-hidden-technical-debt-in-machine-learning-systems.pdf"}}{\fldrslt \cf8 \strokec8 Hidden Technical Debt in Machine Learning Systems}},\'94 by Sculley et al. This paper offers an overview and insights about machine learning-based production systems, including a section on the importance of monitoring.\cb1 \uc0\u8232 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl600\partightenfactor0
+\ls6\ilvl0\cf8 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/compose/compose-file/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Docker Compose file documentation}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls6\ilvl0\cf8 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://grafana.com/docs/grafana/latest/administration/provisioning/"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Prometheus config file documentation}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+\ls6\ilvl0\cf8 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://docs.docker.com/compose/compose-file/#volumes"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Docker volumes}}\cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 .\cb1 \uc0\u8232 \
+}
