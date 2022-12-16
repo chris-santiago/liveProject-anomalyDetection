@@ -296,7 +296,7 @@ Prometheus Python client, or just prometheus_client, is a Python library for gat
 4. Update the machine learning Docker image by building it.
 5. In the Docker Compose file, add the web service to the `services` top-level key. The name of the image has to be the one defined in Milestone 4: for example, `{your_name}/lp-service` and the container name, `service`. Then, expose port `8000` and map the port `8000` from the container to `8000` from the host machine. This port number has to be the same one you added in Milestone 5, step 4.2.
 6. Run the complete platform using Docker Compose. Doing so will start the machine learning service and others.
-7. To check if the metrics are working correctly, go to the browser and access http://localhost:8000/metrics/. Here, you will see the metrics you defined plus others that were automatically added by `prometheus_client`.
+7. To check if the metrics are working correctly, go to the browser and access `http://localhost:8000/metrics/`. Here, you will see the metrics you defined plus others that were automatically added by `prometheus_client`.
 8. Now, visit the Prometheus web client (`http://localhost:9090/graph`). In the search bar, type the name of any of the metrics followed by pressing Enter. There, you will see the default value of the metric.
 9. To start collecting metrics, go to the service’s page interactive documentation page (`http://localhost:8000/docs`) and make several requests. Then, return to Prometheus and search for the metrics. This time, you should see values other than the default ones.
 10. For the last step, we’ll create the dashboard in Grafana.
@@ -307,3 +307,24 @@ Prometheus Python client, or just prometheus_client, is a Python library for gat
     5. Back on the main dashboard screen, add a new panel. Here, we will display the histograms defined in steps 3b and 3c. A histogram metric is like a statistical histogram, where you have buckets with values falling into them, with the difference being that this one is constantly calculating its quantiles. So, we don’t have the actual collected values. Instead, we have each bucket’s count, the total sum of all the collected values, and the total count of values. For this panel’s first query, we want to have the increasing, average model’s output value within a sliding window of 30 seconds. Let’s do it together. To create it, we will use the `predictions_scores_sum` and `predictions_scores_count` metrics that are automatically added by Prometheus’s histogram. In the query area, we will write the following: `sum(increase(predictions_scores_sum[30s]))`. The `increase()` function computes how much the vector `predictions_scores_sum` increased in the last 30 seconds. Then, with the `sum()` function, we sum up all the values of the vector. But that’s not the end. Because we want the average, we need to divide this number by the count, which is obtained with the expression `sum(increase(predictions_scores_count[30s]))`. So, the final formula should look like this: `sum(increase(predictions_output_sum[30s])) / sum(increase(predictions_output_count[30s]))`. Now, repeat the same steps but with the `predictions_scores` metric.
     6. Lastly, create a new panel and add to it the latency metric using the same approach from the previous step. Because this metric measures time, go to the panel settings and change the left y-axis unit to the time unit you used.
 11. Return to the dashboard and save it.
+
+## 7 Testing the Model and Dashboard
+
+### 7.1 Objective
+
+In this last milestone, we will write a script that loads the dataset and uses its data to request predictions while generating metrics. The goal here is to test the system while creating enough metrics to populate our dashboards.
+
+### 7.2 Importance
+
+- In this milestone, we will write a script that requests predictions from the web service. During the process, we’ll test most of the platforms and their functionality. For instance, we’ll test the endpoints and the required inputs and produced outputs while also ensuring that the anomaly detector service is up and running at the correct address. Besides this, by generating metrics and seeing them in the dashboard, we will confirm that the whole monitoring stack, and the dashboard, are working in the way we intended.
+
+### 7.3 Workflow
+
+1. In our working directory, create a new file and name it tester.py.
+2. In tester.py, load the testing dataset.
+3. Write a function that loops over the dataset. At each iteration, do the following:<br>
+    1. Request a prediction using the feature vector from the current iteration.<br>
+    2. There should be a 25% chance of setting the “score” optional setting to `true` (see Milestone 4, step 3).
+4. At the end of the function, call the /model_information endpoint.
+5. Run the script. Note that we are not using Docker this time; instead, run it locally. If the rest of the platform is not up, run it using Docker Compose (see Milestone 5, step 13).
+6. Finally, go to the Grafana dashboard to see the metrics we just generated.
