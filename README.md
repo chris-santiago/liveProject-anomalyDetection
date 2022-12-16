@@ -1,6 +1,6 @@
 # liveProject-anomalyDetection
 
-## Part 1
+## 1 Setting up the Docker Environment
 
 ### 1.1 Objective
 Define a Docker image that runs a Jupyter server. Next, create a Jupyter notebook by accessing Jupyter from the host machine. In Milestones 2 and 3, we will use this Jupyter notebook to explore the dataset and train the anomaly detection model.
@@ -24,7 +24,7 @@ Define a Docker image that runs a Jupyter server. Next, create a Jupyter noteboo
 7. Run the Docker image using the publish or expose option (`-p`) to forward the port you used in the second `CMD` command to the local machine. The command that runs the Docker image is named `run`. This command will run the Docker image and start the Jupyter server. After running it, you will see on screen the address where Jupyter is running. Click on it to access it.
 8. From Jupyter, create a new notebook and print “hello, world.”
 
-## Part 2
+## 2 Analyzing and Visualizing the Anomalous Dataset
 
 ### 2.1 Objective
 
@@ -60,7 +60,7 @@ Our project’s dataset is a sample of a real-life dataset obtained from the aut
     6. Last, we draw two box plots (again, one per feature). A box plot is a visualization for representing the spread of the data and its quantiles. Its name is because it uses a box and two lines (known as whiskers), where the ends of the box mark the first (Q1) and third quartile (Q3), and the whiskers are the lower and upper limits. These lower and upper limits are calculated by their respective formulas: `Q1 – 1.5 * (Q3-Q1)` and `Q3 + 1.5 * (Q3-Q1)`. The values falling outside these limits are categorized as outliers. At a quick glance, the box plots show the outlier data points above the upper limit and a horizontal line instead of a box—this line is the box! But we see it flat instead of squared because the distance between Q3 and Q1 (known as the interquartile range) is extremely small compared to the large outlier values. However, because Plotly graphs are interactive, you can zoom in until the line starts to resemble a box. You can find an example of some of these visualizations in the “full solution” help layer.
 8. Save the notebook.
 
-## Part 3
+## 3 Training an Anomaly Detection Model
 
 ### 3.1 Objective
 
@@ -136,7 +136,7 @@ To use it, execute `make run` from the terminal while same in the path as the ma
 ![](./static/img_2.png)
 14. Export the model to the host machine using the package joblib (it comes with scikit-learn’s installation). For details on how to do this, see the Resources section.
 
-## Part 4
+## 4 Deploying the Model on a FastAPI Web Serivce
 
 ### 4.1 Objective
 
@@ -164,5 +164,106 @@ Use the Python framework FastAPI to develop a web service that hosts and serves 
     3. Lastly, use `CMD` to run the command that starts the service. As before, I recommend using the `--host` and `--port` options with values `0.0.0.0` and `8000`, respectively, to specify the desired host address and port.
 5. After defining the Dockerfile, return to the terminal and build the image using the name `{your_name}/lp-service`. Then, as we did before, run the Docker image using the publish or expose (`-p`) option to map the port you specified in the `CMD` instruction to your computer. Doing so will start the Docker container with the web service running inside of it.
 6. To test the service, go to the browser and access the address printed by the script followed by `/docs`: for example, `http://0.0.0.0:8000/docs`. This link accesses the web service’s interactive API documentation. Here you can do things such as review the endpoints, look at their input schema, and even test the endpoints with a single click. In this step, we use the testing mechanism to test the web service.
-    1. For both endpoints, use the “try it out” option to test them right from the web browser. In the case of the `/prediction` endpoint, try it twice: one time with `score` set to `false` and a second time with `score` set to `true`. If `false`, the response should be an object with a key score. Otherwise, if `score` is true, the response should have a second key anomaly_score. For the /model_information endpoint, the output should be an object where the keys are certain attributes of the model.
+    1. For both endpoints, use the “try it out” option to test them right from the web browser. In the case of the `/prediction` endpoint, try it twice: one time with `score` set to `false` and a second time with `score` set to `true`. If `false`, the response should be an object with a key score. Otherwise, if `score` is true, the response should have a second key anomaly_score. For the `/model_information` endpoint, the output should be an object where the keys are certain attributes of the model.
     2. After executing each test, you will see a `cURL` command already prepared with the address and input. Copy the commands and execute them from the terminal. The output you see there must be the same as the one from the interactive API documentation.
+
+## 5 Setting up the Monitoring Stack
+
+### 5.1 Objective
+
+Use Docker Compose to run Prometheus and Grafana.
+
+### 5.2 Importance
+
+- In this milestone, we will learn how to set up a monitoring stack using Prometheus, Grafana, Caddy, and Docker Compose. In the previous milestones, we worked with containers that work on their own. While this works for small and simple projects, in real-world projects you will encounter many cases where you need to define and orchestrate multicontainer applications. To achieve this, one of the most accessible tools is Docker Compose.
+- Generally speaking, metrics are an essential part of a production system. Platforms nowadays are far from simple. They consist of tens, if not hundreds, of moving parts: processes, inputs, outputs, and more. As a result, it is practically impossible to monitor them manually. For that, we have monitoring systems. With these tools, we can generate metrics that we could later use to assess the system. Moreover, these tools often support alerts, which (as the name indicates) are messages that are triggered when some specified condition is met. For a data-related project such as ours, monitoring is crucial. In this setting, we could monitor things like the status of the data sources or the predictions of a machine learning model; or, in the case of a real-time event system, we could measure the difference between the event time and the time it was processed (in other words, the lag). Figure 1 shows an example of a machine learning system presented in the previously cited paper, “Hidden Technical Debt in Machine Learning Systems” by Sculley et al. There, you find the monitoring portion of the system sitting alongside the rest of the ML platform.
+- In this milestone, we will add access control to Prometheus, thanks to Caddy. This feature is closely related to the concept of data governance, which is mentioned in the project’s introduction.
+- In Milestone 7, we will return to the Docker Compose file to add our machine learning service and test the metrics we will gather in Milestone 6.
+
+### 5.3 Introduction
+
+Before presenting the workflow, I’d like to take a few minutes to give a brief overview of the monitoring stack, its components, and how we will build it.
+
+In this milestone, we will set up and run the monitoring stack that is responsible for tracking and visualizing the metrics we will gather in Milestone 6. The stack consists of three components: **Prometheus, Grafana, and Caddy.**
+
+- Prometheus is a monitoring system and the platform on which we will write our metrics.
+- Grafana is an analytics and dashboard solution that provides numerous charts to display metrics that are gathered in the data sources it supports. For our project, Prometheus is the data source.
+- Caddy is a reverse proxy service that’s not directly linked to monitoring. However, we will use it as a basic authentication provider to control access to Prometheus’s web interface.
+
+We will execute each of these platforms inside Docker containers. Moreover, because we must share data among the containers, we need a way to manage their interactivity. We do this with Docker Compose. Using Docker Compose involves working with a YAML file (known as docker-compose.yml) in which you configure the services. In the YAML file, you configure things like the name of the image you wish to execute, the ports to expose between the services, and the volumes each container needs. We will see more of this as we go through the exercise.
+
+In past milestones, we created our Docker images. For this one, we leverage the portability feature of Docker and use images others have made. For reproducibility purposes, and to make sure we all have the same images, I recommend using the images shown in the following table.
+
+|Platform|Docker Image|
+|--------|------------|
+|Prometheus|prom/prometheus:v2.20.0|
+|Grafana|grafana/grafana:7.1.1|
+|Caddy|stefanprodan/caddy|
+
+### 5.4 Workflow
+
+1. Within the same `liveproject/` directory we’ve been using, create a new directory and name it `monitoring`. Inside the `monitoring` directory , create a Docker Compose file named `docker-compose.yml`.
+2. In the YAML file, specify the version of the Compose file format using the top-level key `version`. Use the value `3`. For a quick introduction to Docker Compose and its terms, I highly suggest checking out the resources recommended at the end of this milestone.
+3. After `version`, create a `volumes` top-level key. Under this key, we will define and create the containers’ named volumes. In Docker terminology, a “volume” is storage used to persist data outside of the container. That way, the data won’t get destroyed even if the container is.
+    1. Under this tag, define two named volumes called `prometheus_data` and `grafana_data`.
+4. Let’s take a small break from the Compose file. In the same directory (`monitoring`), create a new directory and name it `prometheus`, and inside it, create a file named `prometheus.yml`. This file defines the target we wish to scrape (which is our ML service). Note that the file is another YAML, so it follows the same structure as `docker-compose.yml`.
+    1. As a good practice, create a `global` key. Under it, add the key `scrape_interval` with the value set to `15s` to scrape each source every 15 seconds.
+    2. Then, create a second key, `scrape_configs`, to configure the specific targets from which we want to scrape metrics. In our case, that’s the anomaly detector service. This tag requires several others: `job_name`, `scrape_interval`, and `static_configs`, with the latter needing a targets key whose value is a list of the addresses we want to scrape. For `job_name`, use the value `service`; for `scrape_interval`, feel free to choose any value (for example, `10s`); and for `targets`, choose a list with one value, `'service:{service_port}'` (for example, `['service:8000']`).
+5. Back at the Compose file, we will now define the Prometheus service. To do so, create a `services` top-level key. Under this key, create another one named `prometheus`. Here, we require six keys to configure our Prometheus service; we will dedicate one section per key.
+    1. The first one is `image`; use as the value the Prometheus image mentioned in the introduction.
+    2. Next is `container_name`, which we should set to `prometheus`.
+    3. The third one is `volumes`, and we need to define the volumes we want to use with Prometheus. One of the volumes we need to mount is a host volume where the source (the location on the host’s file system) is the `prometheus` directory we created in step 4 and the target is `/etc/prometheus`. The second volume is the named volume we created earlier; its target should be `/prometheus`.
+    4. The next key is `command`, used to override the default commands. On this occasion, we will use it to set several options at the time of executing Prometheus.
+        1. The first flag is `--config.file`. It needs to be set to the location of the `prometheus.yml` file within the container. In other words, it is not the `prometheus.yml` file we have on the host machine. For a hint, take another look at the host volume.
+        2. A second flag we need is `--storage.tsdb.path` to set where Prometheus writes its database. Set its value to the target of the `prometheus_data` named volume.
+        3. The last flag we will use is `--storage.tsdb.retention.time` to explicitly define when we want to delete the old data. It defaults to `15d`, meaning that data is stored for 15 days. Select a retention period that suits your needs: for instance, `48h`.
+    5. Next comes the `restart` key, used to set the restart policy. For our project, let’s use `unless-stopped` to restart the container if it stops but not if it was manually stopped.
+    6. Last, use the key `expose` to expose a port and make Prometheus accessible to the other services. Note that this does not expose the container to the host machine. Use the port `9090`.
+    7. Before moving on to the next service, let’s test what we currently have to make sure we are on the right track. In the terminal (while at the monitoring/ directory), execute docker-compose up -d to start the container. Then, run docker ps to check the status. You should see something like this:
+    ```
+    CONTAINER ID        IMAGE                     COMMAND                  CREATED             STATUS              PORTS               NAMES
+    6f9dddb123ca        prom/prometheus:v2.20.0   "/bin/prometheus --c…"   8 minutes ago       Up 6 minutes        9090/tcp            prometheus
+    ```
+6. Again, let’s step back from the Compose file. In the monitoring/ directory, create the (nested) directory grafana/provisioning/datasources and inside it a new file named datasources.yml. In this configuration file, you will add the data sources you want to use in Grafana.
+    1. Go to the `datasources.yml` file. In the first line, add the key `apiVersion` and set its value to `1`.
+    2. Under it, add a `datasources` key, whose value is a list of data sources we wish to add. We’ll add one (the Prometheus data source).
+    3. To define the data source, first add the `name` and use the value `Prometheus`. (Because this is the first item in the list, you need to add a hyphen before the key.) Then add a `type` key and set it to `prometheus`. Following this, create and set `access` to `proxy`, `orgId` to `1`, and the `url` to `http://prometheus:9090`. (Make sure the address matches Prometheus’s container name and the port is the exposed one.) Lastly, use `basicAuth` and set it to `false` and `isDefault` and `editable` to `true`.
+7. Back in the Compose file, we will now define the Grafana service in a similar way to how we defined the Prometheus one. Once again, we need the same keys: `image`; `container_name`; `volumes`; `restart`; `expose`; and one we didn’t see before, `environment`. (Note we do not need `command`.)
+    1. Set the values of the keys `image`, `container_name`, and `restart`.
+    2. For `expose`, use 13000`.
+    3. As for `volumes`, map the named volume `grafana_data` to `/var/lib/grafana` and create a host volume that maps the provisioning directory (not datasources) to `/etc/grafana/provisioning`.
+    4. In the `environment` key, set three environmental variables. The first of these, `GF_SECURITY_ADMIN_USER`, specifies the default user. Set its value to the variable `ADMIN_USER` (we will assign its value once we run Docker Compose): for example, `GF_SECURITY_ADMIN_USER=${ADMIN_USER}`. Additionally, you could add a default value in case `ADMIN_USER` is never set. (See the Compose file reference and guidelines.) The second env variable is `GF_SECURITY_ADMIN_PASSWORD`, and its value is the variable `ADMIN_PASSWORD`. Then we have `GF_USERS_ALLOW_SIGN_UP`, which allows new users to create accounts. We do not want this, so set its value to `false`.
+    5. To test Grafana, add a `ports` key to the service definition to map the port `3000` to `3000`. Then, run `docker-compose up -d` to run the containers and access `http://localhost:3000` to see Grafana’s logging screen. That’s all for now. Again, please remove the `ports` key from the service.
+8. Now comes the last service: Caddy. Again, we will add a configuration file first and then define the file in Compose. In the monitoring directory, create a new directory named caddy, and inside it, create a file Caddyfile (without extension). At this point we will provide the content of the Caddyfile.
+    1. Copy and paste the following in the Caddyfile:
+    ```
+    `
+    :9090 {
+        basicauth / {$ADMIN_USER} {$ADMIN_PASSWORD}
+        proxy / prometheus:9090 {
+                transparent
+            }
+
+        errors stderr
+        tls off
+            }
+
+    :3000 {
+        proxy / grafana:3000 {
+                transparent
+                websocket
+            }
+
+        errors stderr
+        tls off
+    }
+    `
+    ```
+    2. The most important thing we are doing here is setting an authentication mechanism for Prometheus. So when a user accesses the Prometheus web interface, it will ask for `ADMIN_USER` and `ADMIN_PASSWORD`.
+9. Back in the Compose file, add the Caddy service.
+    1. Define the `image`, `container_name`, and `restart` variables.
+    2. Include a `volume` key with a host volume mapping the `caddy` directory to `/etc/caddy`.
+    3. Add an environment key with two environmental variables, `ADMIN_USER` and `ADMIN_PASSWORD`, whose values are the same as those you used for Grafana’s `GF_SECURITY_ADMIN_USER` and `GF_SECURITY_ADMIN_PASSWORD`.
+    4. Last, use the key `ports` to forward the ports `3000` and `9090` to `3000` and `9090`, respectively (similar to how we did it with the Dockerfile). This mapping will ensure the local machine has access to Grafana and Prometheus.
+10. Now let’s test the system. In the terminal (while at the monitoring directory), execute `ADMIN_USER=admin ADMIN_PASSWORD=admin docker-compose up -d` to start the containers. That’s all we need. To make sure they are running, run docker ps to check the status.
+11. In the browser, go to `http://127.0.0.1:9090/graph` to access the Prometheus console. It will first ask you to enter the user’s credentials; use “admin” and “admin.” For now, there’s not much to see because we are not collecting any metrics yet. To double-check everything, go to status -> configuration, and you should see the `scrape_configs` object you defined earlier. Next, go to `http://127.0.0.1:3000/?orgId=1` to access Grafana. Again, it will ask for your credentials. While in it, go to configuration -> data sources, and you should find the Prometheus data source. Then create a new dashboard and name it “Service.” We’ll return to it later.
